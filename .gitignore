@@ -256,3 +256,4 @@ src/LazyCMS.Web/Logs/*
 src/LazyCMS.Web.Host/Logs/*
 src/LazyCMS.IdentityServer/Logs/*
 src/LazyCMS.HttpApi.Host/Logs/*
+libs/

@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <RootNamespace>LazyCMS</RootNamespace>
@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.1" />
     <ProjectReference Include="..\LazyCMS.Application.Tests\LazyCMS.Application.Tests.csproj" />
     <ProjectReference Include="..\..\src\LazyCMS.Web\LazyCMS.Web.csproj" />
-    <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="0.18.1" />
+    <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="4.2.0" />
   </ItemGroup>
 
   <ItemGroup>

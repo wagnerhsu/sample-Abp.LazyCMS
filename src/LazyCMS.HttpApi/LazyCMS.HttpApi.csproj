@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>LazyCMS</RootNamespace>
   </PropertyGroup>
 
@@ -12,10 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="0.18.1" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="0.18.1" />
-    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="0.18.1" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="0.18.1" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="4.2.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="4.2.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="4.2.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="4.2.0" />
   </ItemGroup>
 
 </Project>
