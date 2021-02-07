@@ -13,7 +13,7 @@ namespace LazyCMS.WeChat
     /// <summary>
     /// 应用服务实例
     /// </summary>
-    public class WxMenuAppService : AsyncCrudAppService<//定义了CRUD方法
+    public class WxMenuAppService : CrudAppService<//定义了CRUD方法
         WxMenu, //数据实体
         WxMenuDto, //用来展示的dto对象
         Guid, //实体的主键

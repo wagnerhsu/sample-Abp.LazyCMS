@@ -14,7 +14,7 @@ namespace LazyCMS.EntityFrameworkCore
             var configuration = BuildConfiguration();
 
             var builder = new DbContextOptionsBuilder<LazyCMSMigrationsDbContext>()
-                .UseMySql(configuration.GetConnectionString("Default"));
+                .UseSqlServer(configuration.GetConnectionString("Default"));
 
             return new LazyCMSMigrationsDbContext(builder.Options);
         }

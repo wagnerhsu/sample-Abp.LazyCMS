@@ -1,4 +1,5 @@
-﻿using Senparc.NeuChar.Context;
+﻿using Senparc.NeuChar;
+using Senparc.NeuChar.Context;
 using Senparc.NeuChar.Entities;
 using Senparc.Weixin.MP.Entities.Request;
 using Senparc.Weixin.MP.MessageHandlers;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LazyCMS.Web.Handlers
 {
@@ -37,6 +39,16 @@ namespace LazyCMS.Web.Handlers
         public WxMPMessageContext()
         {
             base.MessageContextRemoved += WxMPMessageContext_MessageContextRemoved;
+        }
+
+        public override IRequestMessageBase GetRequestEntityMappingResult(RequestMsgType requestMsgType, XDocument doc)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IResponseMessageBase GetResponseEntityMappingResult(ResponseMsgType responseMsgType, XDocument doc)
+        {
+            throw new NotImplementedException();
         }
 
         private void WxMPMessageContext_MessageContextRemoved(object sender, WeixinContextRemovedEventArgs<IRequestMessageBase, IResponseMessageBase> e)

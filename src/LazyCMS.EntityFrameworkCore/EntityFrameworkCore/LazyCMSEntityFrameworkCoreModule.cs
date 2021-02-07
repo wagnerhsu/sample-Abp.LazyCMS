@@ -1,15 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Domain.Entities;
-using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.DependencyInjection;
-using Volo.Abp.EntityFrameworkCore.MySQL;
+using Volo.Abp.EntityFrameworkCore.SqlServer;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
@@ -26,8 +19,8 @@ namespace LazyCMS.EntityFrameworkCore
         typeof(AbpIdentityServerEntityFrameworkCoreModule),
         typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpSettingManagementEntityFrameworkCoreModule),
-        typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(BackgroundJobsEntityFrameworkCoreModule),
+        typeof(AbpEntityFrameworkCoreSqlServerModule),
+        typeof(AbpBackgroundJobsEntityFrameworkCoreModule),
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule)
@@ -51,7 +44,7 @@ namespace LazyCMS.EntityFrameworkCore
             {
                 /* The main point to change your DBMS.
                  * See also LazyCMSMigrationsDbContextFactory for EF Core tooling. */
-                options.UseMySQL();
+                options.UseSqlServer();
             });
         }
     }

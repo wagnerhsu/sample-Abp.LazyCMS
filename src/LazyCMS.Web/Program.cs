@@ -1,9 +1,8 @@
-﻿using System;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.InProcess;
+﻿using Microsoft.AspNetCore.Hosting;
 using Serilog;
 using Serilog.Events;
+using System;
+using System.IO;
 
 namespace LazyCMS.Web
 {
@@ -11,7 +10,6 @@ namespace LazyCMS.Web
     {
         public static int Main(string[] args)
         {
-            CurrentDirectoryHelpers.SetCurrentDirectory();
 
             Log.Logger = new LoggerConfiguration()
 #if DEBUG

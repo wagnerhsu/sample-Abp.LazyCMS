@@ -31,7 +31,7 @@ namespace LazyCMS.EntityFrameworkCore
         /// <returns></returns>
         public Delegate Create(Type entityType)
         {
-            var EntityOptions = typeof(EntityOptions<>).MakeGenericType(entityType);
+            var EntityOptions = typeof(AbpEntityOptions<>).MakeGenericType(entityType);
             var optionsAction = typeof(Action<>).MakeGenericType(EntityOptions);
 
             var method = (typeof(EntityIncludeBuilder) as System.Reflection.TypeInfo).DeclaredMethods.FirstOrDefault(t => t.Name.Equals("EntityAutoInclude"))
@@ -45,7 +45,7 @@ namespace LazyCMS.EntityFrameworkCore
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="options"></param>
-        void EntityAutoInclude<TEntity>(EntityOptions<TEntity> options)
+        void EntityAutoInclude<TEntity>(AbpEntityOptions<TEntity> options)
             where TEntity : class, Volo.Abp.Domain.Entities.IEntity
         {
             options.DefaultWithDetailsFunc = p =>

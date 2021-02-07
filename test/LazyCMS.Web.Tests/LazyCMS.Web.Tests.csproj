@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <ProjectReference Include="..\LazyCMS.Application.Tests\LazyCMS.Application.Tests.csproj" />
     <ProjectReference Include="..\..\src\LazyCMS.Web\LazyCMS.Web.csproj" />
     <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="4.2.0" />

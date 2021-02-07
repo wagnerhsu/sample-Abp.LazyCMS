@@ -1,21 +1,20 @@
-﻿using System.IO;
+﻿using LazyCMS.EntityFrameworkCore;
+using LazyCMS.Localization;
+using LazyCMS.MultiTenancy;
+using LazyCMS.Web.Menus;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using LazyCMS.EntityFrameworkCore;
-using LazyCMS.Localization;
-using LazyCMS.MultiTenancy;
-using LazyCMS.Web.Menus;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System.IO;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
-using Volo.Abp.AspNetCore.Mvc.UI;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.Autofac;
@@ -23,11 +22,9 @@ using Volo.Abp.AutoMapper;
 using Volo.Abp.Identity.Web;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement.Web;
 using Volo.Abp.TenantManagement.Web;
-using Volo.Abp.Ui.Navigation.Urls;
-using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
+using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
 
 namespace LazyCMS.Web
@@ -75,7 +72,7 @@ namespace LazyCMS.Web
             ConfigureSwaggerServices(context.Services);
         }
 
-        private void ConfigureUrls(IConfigurationRoot configuration)
+        private void ConfigureUrls(IConfiguration configuration)
         {
             Configure<AppUrlOptions>(options =>
             {
@@ -83,7 +80,7 @@ namespace LazyCMS.Web
             });
         }
 
-        private void ConfigureAuthentication(ServiceConfigurationContext context, IConfigurationRoot configuration)
+        private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
         {
             context.Services.AddAuthentication()
                 .AddIdentityServerAuthentication(options =>
@@ -107,11 +104,11 @@ namespace LazyCMS.Web
             });
         }
 
-        private void ConfigureVirtualFileSystem(IHostingEnvironment hostingEnvironment)
+        private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
         {
             if (hostingEnvironment.IsDevelopment())
             {
-                Configure<VirtualFileSystemOptions>(options =>
+                Configure<AbpVirtualFileSystemOptions>(options =>
                 {
                     options.FileSets.ReplaceEmbeddedByPhysical<LazyCMSDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}LazyCMS.Domain.Shared", Path.DirectorySeparatorChar)));
                     options.FileSets.ReplaceEmbeddedByPhysical<LazyCMSDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}LazyCMS.Domain", Path.DirectorySeparatorChar)));
@@ -142,7 +139,7 @@ namespace LazyCMS.Web
 
         private void ConfigureNavigationServices()
         {
-            Configure<NavigationOptions>(options =>
+            Configure<AbpNavigationOptions>(options =>
             {
                 options.MenuContributors.Add(new LazyCMSMenuContributor());
             });
@@ -161,7 +158,7 @@ namespace LazyCMS.Web
             services.AddSwaggerGen(
                 options =>
                 {
-                    options.SwaggerDoc("v1", new Info { Title = "LazyCMS API", Version = "v1" });
+                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "LazyCMS API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
                 }

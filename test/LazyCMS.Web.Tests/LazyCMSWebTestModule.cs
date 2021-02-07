@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using LazyCMS.Localization;
+using LazyCMS.Web;
+using LazyCMS.Web.Menus;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using LazyCMS.Localization;
-using LazyCMS.Web;
-using LazyCMS.Web.Menus;
+using System.Collections.Generic;
+using System.Globalization;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.TestBase;
 using Volo.Abp.Localization;
-using Volo.Abp.Localization.Resources.AbpValidation;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
+using Volo.Abp.Validation.Localization;
 
 namespace LazyCMS
 {
@@ -62,7 +62,7 @@ namespace LazyCMS
 
         private static void ConfigureNavigationServices(IServiceCollection services)
         {
-            services.Configure<NavigationOptions>(options =>
+            services.Configure<AbpNavigationOptions>(options =>
             {
                 options.MenuContributors.Add(new LazyCMSMenuContributor());
             });

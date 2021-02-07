@@ -37,7 +37,7 @@ namespace LazyCMS.Web
             app.InitializeApplication();
 
             // 启动 CO2NET 全局注册，必须！
-            IRegisterService register = RegisterService.Start(env, senparcSetting.Value)
+            IRegisterService register = RegisterService.Start(senparcSetting.Value)
                 //关于 UseSenparcGlobal() 的更多用法见 CO2NET Demo：https://github.com/Senparc/Senparc.CO2NET/blob/master/Sample/Senparc.CO2NET.Sample.netcore/Startup.cs
                 .UseSenparcGlobal();
 
@@ -83,10 +83,10 @@ namespace LazyCMS.Web
 
             #region 微信缓存（按需，必须在 register.UseSenparcWeixin() 之前）
             // 微信的 Memcached 缓存，如果不使用则注释掉（开启前必须保证配置有效，否则会抛错）    -- DPBMARK Memcached
-            if (useMemcached)
-            {
-                app.UseSenparcWeixinCacheMemcached();
-            }                                                                                      // DPBMARK_END
+            //if (useMemcached)
+            //{
+            //    app.UseSenparcWeixinCacheMemcached();
+            //}                                                                                      // DPBMARK_END
 
             #endregion
 

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using IdentityServer4.Models;
+using Microsoft.Extensions.Configuration;
 using Volo.Abp.Authorization.Permissions;
-using Volo.Abp.Configuration;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
@@ -24,7 +24,7 @@ namespace LazyCMS.IdentityServer
         private readonly IIdentityResourceDataSeeder _identityResourceDataSeeder;
         private readonly IGuidGenerator _guidGenerator;
         private readonly IPermissionDataSeeder _permissionDataSeeder;
-        private readonly IConfigurationAccessor _configurationAccessor;
+        private readonly IConfiguration _configurationAccessor;
 
         public IdentityServerDataSeedContributor(
             IClientRepository clientRepository,
@@ -32,7 +32,7 @@ namespace LazyCMS.IdentityServer
             IIdentityResourceDataSeeder identityResourceDataSeeder,
             IGuidGenerator guidGenerator,
             IPermissionDataSeeder permissionDataSeeder,
-            IConfigurationAccessor configurationAccessor)
+            IConfiguration configurationAccessor)
         {
             _clientRepository = clientRepository;
             _apiResourceRepository = apiResourceRepository;
@@ -104,7 +104,7 @@ namespace LazyCMS.IdentityServer
                 "LazyCMS"
             };
 
-            var configurationSection = _configurationAccessor.Configuration.GetSection("IdentityServer:Clients");
+            var configurationSection = _configurationAccessor.GetSection("IdentityServer:Clients");
 
             //Web Client
             var webClientId = configurationSection["LazyCMS_Web:ClientId"];

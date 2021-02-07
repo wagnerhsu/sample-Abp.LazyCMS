@@ -34,7 +34,7 @@ namespace LazyCMS.WeChat
 
             if (wxu == null)
             {
-                var user = await this.identityUsers.InsertAsync(new Volo.Abp.Identity.IdentityUser(GuidGenerator.Create(), "测试微信用户"));
+                var user = await this.identityUsers.InsertAsync(new Volo.Abp.Identity.IdentityUser(GuidGenerator.Create(), "测试微信用户","test@example.com"));
 
                 WxUser m = new WxUser(user.Id);
                 m.UpdatePublicOpenId(openId);

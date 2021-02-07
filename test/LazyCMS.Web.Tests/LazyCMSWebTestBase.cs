@@ -1,23 +1,15 @@
-﻿using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Shouldly;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.TestBase;
 
 namespace LazyCMS
 {
     public abstract class LazyCMSWebTestBase : AbpAspNetCoreIntegratedTestBase<LazyCMSWebTestStartup>
     {
-        protected override IWebHostBuilder CreateWebHostBuilder()
-        {
-            return base
-                .CreateWebHostBuilder()
-                .UseContentRoot(WebContentDirectoryFinder.CalculateContentRootFolder());
-        }
-
         protected virtual async Task<T> GetResponseAsObjectAsync<T>(string url, HttpStatusCode expectedStatusCode = HttpStatusCode.OK)
         {
             var strResponse = await GetResponseAsStringAsync(url, expectedStatusCode);
